@@ -621,11 +621,14 @@
     <p>Cognitive Human Factors · Intelligent Tutoring Systems · Learning &amp; Retention</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── KLM / Human / ACT-R figure — bright theme ───────────────────
+  <script>
+  window.addEventListener('DOMContentLoaded', function() {
+  // ── KLM / Human / ACT-R figure ──────────────────────────────────
   (function () {
     const canvas = document.getElementById('curve');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const W = canvas.width, H = canvas.height;
     const PAD = { top: 30, right: 28, bottom: 56, left: 64 };
     const PW = W - PAD.left - PAD.right;
@@ -774,4 +777,14 @@
     entries.forEach(e => {
       if (e.isIntersecting) {
         const el=e.target, target=parseInt(el.dataset.target); let v=0;
-        const t=setInterval(()=>{ v=Math.min(v+target/40,target); el.textConten
+        const t=setInterval(()=>{ v=Math.min(v+target/40,target); el.textContent=Math.floor(v)+(target>=20?'+':''); if(v>=target)clearInterval(t); },35);
+        sObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num').forEach(el=>sObs.observe(el));
+
+  }); // end DOMContentLoaded
+  </script>
+</body>
+</html>
