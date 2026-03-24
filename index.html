@@ -191,8 +191,6 @@
     .hero-chart {
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: stretch;
-      opacity: 0;
-      animation: fadeIn .9s .9s forwards;
     }
     .chart-label {
       font-family: var(--ff-mono);
@@ -321,10 +319,7 @@
       gap: 1.8rem;
       padding: 1.9rem 0;
       border-bottom: 1px solid rgba(26,94,190,.10);
-      opacity: 0; transform: translateY(12px);
-      transition: opacity .5s, transform .5s;
     }
-    .pub-item.visible { opacity: 1; transform: translateY(0); }
 
     .pub-year {
       font-family: var(--ff-mono);
@@ -615,8 +610,8 @@
     <p class="section-tag">// 04 — Contact</p>
     <h2 class="section-title">Let's <em>connect</em></h2>
     <div class="contact-links">
-      <a href="mailto:jongkim626@gmail.com" class="contact-link">✉ jongkim626@gmail.com</a>
-      <a href="https://scholar.google.com/scholar?q=Jong+W+Kim+ACT-R" target="_blank" rel="noopener" class="contact-link">↗ Google Scholar</a>
+      <a href="/cdn-cgi/l/email-protection#b6dcd9d8d1dddfdb808480f6d1dbd7dfda98d5d9db" class="contact-link">✉ <span class="__cf_email__" data-cfemail="0b6164656c6062663d393d4b6c666a626725686466">[email&#160;protected]</span></a>
+      <a href="https://scholar.google.com/citations?hl=en&user=G4SxXdwAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="contact-link">↗ Google Scholar</a>
       <a href="https://acs.ist.psu.edu/wp/" target="_blank" rel="noopener" class="contact-link">↗ ACS Lab @ Penn State</a>
     </div>
   </section>
@@ -626,7 +621,7 @@
     <p>Cognitive Human Factors · Intelligent Tutoring Systems · Learning &amp; Retention</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── KLM / Human / ACT-R figure — bright theme ───────────────────
   (function () {
     const canvas = document.getElementById('curve');
@@ -763,28 +758,20 @@
       else setTimeout(()=>drawAll(SESSIONS,1,1), 80);
     }
 
-    setTimeout(()=>requestAnimationFrame(animate), 1100);
+    setTimeout(()=>requestAnimationFrame(animate), 300);
   })();
 
-  // ── Scroll fade-in ────────────────────────────────────────────────
+  // ── Scroll fade-in (timeline only) ───────────────────────────────
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e,i) => {
       if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('visible'), i*80); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.pub-item,.tl-item').forEach(el=>obs.observe(el));
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.tl-item').forEach(el=>obs.observe(el));
 
   // ── Stat counters ─────────────────────────────────────────────────
   const sObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         const el=e.target, target=parseInt(el.dataset.target); let v=0;
-        const t=setInterval(()=>{ v=Math.min(v+target/40,target); el.textContent=Math.floor(v)+(target>=20?'+':''); if(v>=target)clearInterval(t); },35);
-        sObs.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stat-num').forEach(el=>sObs.observe(el));
-  </script>
-</body>
-</html>
+        const t=setInterval(()=>{ v=Math.min(v+target/40,target); el.textConten
